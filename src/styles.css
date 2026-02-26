@@ -10,13 +10,14 @@ mat-toolbar mat-icon {
     color: white;
 }
 
-html, body {
+html, 
+body {
     height: 100%;
     margin: 0;
 }
 
 mat-sidenav-container {
-    height: 100vh;
+    height: calc(100vh - 64px);
 }
 
 mat-sidenav {

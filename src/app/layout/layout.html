@@ -1,12 +1,12 @@
 <app-menu (toggleSidenav)="tooggleSidenav()"> </app-menu>
+
 <mat-sidenav-container class="example-container" autosize>
   <mat-sidenav
     #sidenav
     mode="over"
     [opened]="isSidenavOpen()"
     (closedStart)="isSidenavOpen.set(false)"
-    style="width: 260px"
-  >
+    style="width: 260px" >
     <app-sidenav></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
