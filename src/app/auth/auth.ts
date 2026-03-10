@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './model/user';
+import { retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -78,6 +79,16 @@ export class AuthService {
       if(payload != null && payload.Username && payload.Username.lenght > 0) {
         return true;
       }
+    }
+    return false;
+  }
+
+
+
+  isTokenExpired(): boolean {
+    let now = new Date().getTime() / 1000;
+    if(this.getPayload(this.token).exp < now) {
+      return true;
     }
     return false;
   }
