@@ -9,7 +9,7 @@ import { Route, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { AuthService } from '../auth';
 import { User } from '../model/user';
-import { subscribeOn } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -28,13 +28,17 @@ export class Login implements OnInit {
   form!: FormGroup;
 
   user: User = new User();
+  roles: any[] = [];
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {}
+
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
+
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['edwintumax', Validators.required],
+      password: ['Inicio.2025', Validators.required],
     });
   }
 
