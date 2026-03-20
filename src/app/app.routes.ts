@@ -8,6 +8,7 @@ export const routes: Routes = [
         component: Layout,
         children: [
             {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+            {path: 'roles', loadComponent: () => import('./role/component/role-component').then((c) => c.RoleComponent)},
             { path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard').then((c) => c.Dashboard)}
         ]
     },
