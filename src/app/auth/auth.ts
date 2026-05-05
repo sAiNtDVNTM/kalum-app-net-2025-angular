@@ -1,17 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './model/user';
-import { retry } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
 
   private _token?: string;
-
   private _user?: User;
-
 
   public get user(): User {
     if(this._user != null) {
@@ -24,7 +21,7 @@ export class AuthService {
   }
 
   public get token(): any {
-    if(this._token != null) {
+    if(this._token != null && this._token !== undefined && this._token !== '') {
       return this._token;
     } else if(this._token == null && localStorage.getItem('token') != null) {
       this._token = JSON.stringify(localStorage.getItem('token') as string);
@@ -37,13 +34,12 @@ export class AuthService {
 
   }
 
-  login(user:User) {
+  login( user:User ) {
     const httpHeaders = new HttpHeaders({'Content-Type':'application/json'});
-    return this.http.post('http://localhost:5125/kalum-auth/v1/accounts/login',user, { headers: httpHeaders});
+    return this.http.post('http://localhost:5125/kalum-auth/v1/accounts/login',user,{ headers: httpHeaders });
   }
 
-
-  logout(): void{
+  logout(): void {
     this._token = '';
     this._user == null;
     localStorage.clear();
@@ -51,21 +47,20 @@ export class AuthService {
     localStorage.removeItem('token');
   }
 
-
   getPayload(token: string): any {
     if(token && token != null){
       return JSON.parse(atob(token.split('.')[1]));
     }
-    return null
+    return null;
   }
 
   saveUser(payload: any):void {
     this._user = new User();
     this._user.username = payload.Username;
     this._user.email = payload.email;
-    this._user.identifyUser = payload.IdentifyUser;
-    this._user.roles = payload ['http//schemas.microsoft.com/ws/2008/06/identity/claims/role']
-    localStorage.setItem('user',JSON.stringify(this._user));
+    this._user.identityUser = payload.IdentityUser;
+    this._user.roles = payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+    localStorage.setItem('user',JSON.stringify(this._user)); 
   }
 
   saveToken(token: string) : void {
@@ -74,16 +69,14 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    if(this.token != null ) {
+    if(this.token != null) {
       let payload = this.getPayload(this.token);
-      if(payload != null && payload.Username && payload.Username.lenght > 0) {
+      if(payload != null && payload.Username && payload.Username.length > 0) {
         return true;
       }
     }
     return false;
   }
-
-
 
   isTokenExpired(): boolean {
     let now = new Date().getTime() / 1000;
@@ -93,5 +86,12 @@ export class AuthService {
     return false;
   }
 
+  hasRole(role: string): boolean {
+    if(this.user.roles.includes(role)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
 }

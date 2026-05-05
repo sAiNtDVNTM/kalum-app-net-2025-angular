@@ -2,6 +2,6 @@ export class User {
     username?: string;
     password?: string;
     email?: string;
-    identifyUser?: string;
+    identityUser?: string;
     roles: string[] = [];
 }

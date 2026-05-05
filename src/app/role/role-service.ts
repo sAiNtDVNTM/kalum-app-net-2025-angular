@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { enviroment } from '../../enviroments/enviroments';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Role } from './model/role.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,25 @@ export class RoleService {
   getListRole() : Observable<any> {
     return this.httpclient.get<any[]>(`${this.endPointRole}/roles`);
   }
-  
+
+
+  createRole(role: Role) : Observable<any> {
+    return this.httpclient.post<any>(`${this.endPointRole}/roles`,{roleName: role.name});
+  }
+
+  updateRole(roleId: string, roleName: any) {
+    return this.httpclient.put(`${this.endPointRole}/roles/${roleId}`, {roleName})
+  }
+
+  deleteRole(roleId: string) {
+    return this.httpclient.delete(`${this.endPointRole}/roles/${roleId}`);
+  }
+
+  searchById(roleId: string) {
+    return this.httpclient.get(`${this.endPointRole}/roles/${roleId}`);
+  }
+
 }
+  
+
 

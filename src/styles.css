@@ -1,80 +1,133 @@
+/* Importa el core de Angular Material */
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+/* Opcional: personalizar con variables */
 :root {
-    --mdc-theme-primary: #3f51b5;
-    --mdc-theme-secondary: #e91e63;
-    --mdc-theme-error: #f44336;
+  --mdc-theme-primary: #3f51b5;
+  /* Indigo */
+  --mdc-theme-secondary: #e91e63;
+  /* Pink */
+  --mdc-theme-error: #f44336;
+  /* Red */
 }
 
 mat-toolbar mat-icon {
-    color: white;
+  color: white;
 }
 
-html, 
+html,
 body {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 mat-sidenav-container {
-    height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
+  /* ocupa toda la ventana */
 }
 
 mat-sidenav {
-    height: 100%;
+  height: 100%;
+  /* ocupa toda la altura del contenedor */
 }
 
 mat-sidenav app-sidenav {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
+/* Asegura que mat-icon esté centrado verticalmente y con margen a la derecha */
 mat-list-item mat-icon {
-    margin-right: 16px;
-    vertical-align: middle;
-    font-size: 24px;
+  margin-right: 16px;
+  /* espacio entre ícono y texto */
+  vertical-align: middle;
+  /* centra verticalmente respecto al texto */
+  font-size: 24px;
+  /* tamaño consistente */
 }
 
+/* Opcional: alinear texto verticalmente con ícono */
 mat-list-item .menu-text {
-    display: inline-block;
-    line-height: 24px;
-    vertical-align: middle;
+  display: inline-block;
+  line-height: 24px;
+  /* igual al tamaño del icono */
+  vertical-align: middle;
 }
 
+/* Contenedor principal: centra vertical y horizontal */
 .login-container {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f5f5f5;
-}
-.login-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  height: 100vh;
+  /* toda la altura de la ventana */
+  display: flex;
+  justify-content: center;
+  /* horizontal */
+  align-items: center;
+  /* vertical */
+  background-color: #f5f5f5;
+  /* opcional, color de fondo */
 }
 
+/* Card del login */
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  /* tamaño máximo */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /* espacio vertical entre los controles */
+}
+
+/* Input full width */
 .full-width {
-    width: 100px;
+  width: 100%;
 }
 
 .alinear {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 ul li {
-    list-style: none;
+  list-style: none;
 }
 
 mat-form-field {
-    width: 140%;
+  width: 140%;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
+}
+
+.text-center-column {
+  text-align: center !important;
+}
+
+.mat-cell:nth-child(1),
+mat-header-cell:nth-child(1) {
+  flex: 0 0 6%;
+}
+
+.form-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input-container>* {
+  width: 100%;
+}
+.text-color-kalum {
+    color: white;
+}
+
+.profile-card {
+  text-align: center;
+  padding: 0 20px 20px 20px;
+}
+
+.header-profile-card {
+  margin-top: 20px;
 }
